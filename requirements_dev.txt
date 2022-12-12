@@ -1,0 +1,8 @@
+# dev deps
+mock>=3.0.5
+pytest>=3.8.0
+semver
+
+# prod deps
+six>=1.7.3
+decorator>=4.3.0

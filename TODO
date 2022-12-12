@@ -1,0 +1,35 @@
+TODO:
+- ensure that memoization works properly with partial injection
+- improve DirectlyPassingInjectedArgsError
+- auto-require provider method args
+- allow testing that bindings exist to allow object to be provided
+- move obj_provider into injection_context, so that provisers only have one arg?
+- describe features specifically omitted, e.g.,
+  - circular injection
+  - scope annotations on classes
+- figure out whether/how Pinject works with inheritance
+- make provider bindings inject a provider that has the correct signature (difficult!)
+
+Maybe TODO:
+- make @inject complain if not applied to initializer or binding spec method
+    (doesn't seem possible: method passed to decorator has type 'function' and
+    seemingly no info about the class in which it's defined)
+- allow object_graph.provide('arg name')?
+- standard tests for scopes (reentrant? thread-safe?), annotations (eq?
+     hash?), etc.
+- change default scope back to prototype?
+- eager singletons
+- find modules on PYTHONPATH instead of having to import them
+- automatically instantiate the concrete subclass of an interface?
+    (use abc module)
+- visual graph of created objects
+
+Questions:
+- How should I deal with someone wanting to instantiate a class in a scope,
+    without using an arg name in between?  Scopes apply to binding keys,
+    which are arg names, not classes.  Is it going to be harmful if you
+    can't instantiate a class directly in a scope?  I don't think so, but
+    I'm not sure.  It makes some things awkward, like a special scope from
+    which it's OK to inject objects from any scope.  Maybe the main
+    ObjectGraph method should be wrap() instead of provide_class()??
+- Why should @inject apply to __init__() rather than the class?
